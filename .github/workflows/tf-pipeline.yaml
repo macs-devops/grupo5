@@ -10,6 +10,7 @@ env:
   # The role we set up in our bootstrap Terraform environment
   TF_VAR_upcloud_user: ${{ secrets.UPCLOUD_USERNAME }}
   TF_VAR_upcloud_password: ${{ secrets.UPCLOUD_PASSWORD }}
+  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
 # Because we need the id-token permission, we have to specify all the
 # permissions that we need.
