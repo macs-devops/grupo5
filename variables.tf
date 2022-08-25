@@ -12,6 +12,10 @@ variable "project_id" {}
 
 variable "credentials_file_path" {}
 
+variable "gcp-creds" {
+default= ""
+}
+
 variable "region" {
   default = "us-central1"
 }

@@ -1,5 +1,5 @@
 project_id            = "pin2022"
-credentials_file_path = "/path/to/my/credentials.json"
+credentials_file_path = "/credentials.json"
 region                = "northamerica-northeast1"
 zone                  = "northamerica-northeast1-c"
 
