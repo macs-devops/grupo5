@@ -24,7 +24,7 @@ resource "google_container_cluster" "primary" {
   enable_tpu            = var.enable_tpu
 
   network    = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
-  subnetwork = google_compute_subnetwork.k8s_subnet.id
+  subnetwork = "projects/pin2022/regions/northamerica-northeast1/subnetworks/pin-devops-subnet"
 
   # ip_allocation_policy left empty here to let GCP pick
   # otherwise you will have to define your own secondary CIDR ranges

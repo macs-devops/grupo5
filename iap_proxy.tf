@@ -44,7 +44,7 @@ resource "google_compute_instance" "iap-proxy" {
   # we now have to reference it with an index as well
   network_interface {
     network    = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
-    subnetwork = google_compute_subnetwork.iap_subnet[count.index].name
+    subnetwork = "pin-devops-iap-subnet"
   }
 
   metadata_startup_script = file("./scripts/startup.sh")
