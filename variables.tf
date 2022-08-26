@@ -49,11 +49,6 @@ variable "enable_cloud_nat_logging" {
   default     = "false"
 }
 
-
-#-----------------------------
-# IAM
-#-----------------------------
-
 variable "iam_roles_list" {
   description = "List of IAM roles to be assigned to GKE service account"
   type        = list(string)
@@ -64,11 +59,6 @@ variable "iam_roles_list" {
     "roles/stackdriver.resourceMetadata.writer",
   ]
 }
-
-
-#-------------------------------
-# Private GKE Cluster settings
-#-------------------------------
 
 variable "enable_private_endpoint" {
   description = "When true public access to cluster (master) endpoint is disabled.  When false, it can be accessed both publicly and privately."
@@ -89,11 +79,6 @@ variable "iap_proxy_ip_cidr" {
   description = "CIDR of subnet for IAP proxy VM.  Should make this subnet as small as possible (i.e. /29)"
   default     = "192.168.100.0/29"
 }
-
-
-#-----------------------------
-# GKE Cluster
-#-----------------------------
 
 variable "gke_cluster_name" {}
 
