@@ -10,7 +10,7 @@ resource "google_storage_bucket" "default" {
 
 terraform {
  backend "gcs" {
-   bucket  = google_storage_bucket.default.name
+   bucket  = "pin2022-tfstate"
    prefix  = "terraform/state"
  }
 }
