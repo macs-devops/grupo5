@@ -31,7 +31,7 @@ jobs:
 
       - name: "Terraform Init"
         id: terraform_init
-        uses: ops18/terraform-github-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -41,7 +41,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: "Terraform Validate"
         id: terraform_validate
-        uses: ops18/terraform-github-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -51,7 +51,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: "Terraform Plan"
         id: terraform_plan
-        uses: ops18/terraform-github-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -61,7 +61,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: "Terraform Apply"
-        uses: ops18/terraform-github-actions@master
+        uses: hashicorp/terraform-github-actions@master
         id: terraform_apply
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
