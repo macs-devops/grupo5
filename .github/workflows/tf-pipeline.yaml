@@ -16,7 +16,7 @@ jobs:
 
       - name: configure gcloud
         id: config_gcloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
           version: "latest"
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
@@ -37,7 +37,7 @@ jobs:
 
       - name: "Terraform Init"
         id: terraform_init
-        uses: ops18/terraform-github-actions@master
+        uses: ops18/terraform-github-actions@main
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -47,7 +47,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
       - name: "Terraform Validate"
         id: terraform_validate
-        uses: ops18/terraform-github-actions@master
+        uses: ops18/terraform-github-actions@main
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -57,7 +57,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
       - name: "Terraform Plan"
         id: terraform_plan
-        uses: ops18/terraform-github-actions@master
+        uses: ops18/terraform-github-actions@main
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
@@ -67,7 +67,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
 
       - name: "Terraform Apply"
-        uses: ops18/terraform-github-actions@master
+        uses: ops18/terraform-github-actions@main
         id: terraform_apply
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
