@@ -1,3 +1,6 @@
+data "google_compute_network" "k8s_vpc" {
+  name = "${var.gke_cluster_name}-k8s-vpc"
+}
 resource "google_compute_subnetwork" "k8s_subnet" {
   name                     = "${var.gke_cluster_name}-subnet"
   ip_cidr_range            = var.primary_ip_cidr
