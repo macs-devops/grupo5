@@ -10,6 +10,10 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        id: checkout_code
+        uses: actions/checkout@v3
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
         with:
@@ -20,10 +24,6 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
-
-      - name: checkout
-        id: checkout_code
-        uses: actions/checkout@v2
 
       - name: set GCP project
         id: config_project
