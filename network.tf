@@ -1,9 +1,6 @@
-resource "google_compute_subnetwork" "k8s_subnet" {
-  name                     = "${var.gke_cluster_name}-subnet"
-  ip_cidr_range            = var.primary_ip_cidr
-  network                  = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
-  private_ip_google_access = "true"
-  region                   = var.region
+data "google_compute_subnetwork" "k8s_subnet" {
+  name   = "pin-devops-subnet"
+  region = var.region
 }
 
 # https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-gateways#gateway_controller_requirements

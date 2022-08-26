@@ -3,13 +3,9 @@ data "google_compute_network" "k8s_vpc" {
   project = "pin2022"
 }
 
-resource "google_compute_subnetwork" "iap_subnet" {
-  count                    = var.enable_private_endpoint ? 1 : 0
-  name                     = "${var.gke_cluster_name}-iap-subnet"
-  ip_cidr_range            = var.iap_proxy_ip_cidr
-  network                  = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
-  private_ip_google_access = "true"
-  region                   = var.region
+data "google_compute_subnetwork" "iap_subnet" {
+  name   = "pin-devops-iap-subnet"
+  region = "var.region"
 }
 
 resource "google_compute_firewall" "iap_tcp_forwarding" {
