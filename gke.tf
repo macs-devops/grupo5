@@ -125,7 +125,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
       disable-legacy-endpoints = "true"
     }
 
-    service_account = google_service_account.gke_sa.email
+    service_account = "pin2022@pin2022.iam.gserviceaccount.com"
     oauth_scopes    = var.oauth_scopes
 
     dynamic "taint" {
