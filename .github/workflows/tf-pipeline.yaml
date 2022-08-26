@@ -37,7 +37,7 @@ jobs:
 
       - name: "Terraform Init"
         id: terraform_init
-        uses: ops18/terraform-github-actions@main
+        uses: ops18/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
