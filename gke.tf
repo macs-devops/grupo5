@@ -23,7 +23,7 @@ resource "google_container_cluster" "primary" {
   enable_shielded_nodes = var.enable_shielded_nodes
   enable_tpu            = var.enable_tpu
 
-  network    = google_compute_network.k8s_vpc.id
+  network    = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
   subnetwork = google_compute_subnetwork.k8s_subnet.id
 
   # ip_allocation_policy left empty here to let GCP pick
