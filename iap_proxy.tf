@@ -1,3 +1,8 @@
+data "google_compute_network" "k8s_vpc" ¨{
+  name = "${var.gke_cluster_name}-k8s-vpc"
+  project = "pin2022"
+}
+
 resource "google_compute_subnetwork" "iap_subnet" {
   count                    = var.enable_private_endpoint ? 1 : 0
   name                     = "${var.gke_cluster_name}-iap-subnet"

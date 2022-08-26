@@ -1,5 +1,6 @@
 data "google_compute_network" "k8s_vpc" {
   name = "${var.gke_cluster_name}-k8s-vpc"
+  project = "pin2022"
 }
 resource "google_compute_subnetwork" "k8s_subnet" {
   name                     = "${var.gke_cluster_name}-subnet"
