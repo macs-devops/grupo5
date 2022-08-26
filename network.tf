@@ -1,11 +1,7 @@
-data "google_compute_network" "k8s_vpc" {
-  name = "${var.gke_cluster_name}-k8s-vpc"
-  project = "pin2022"
-}
 resource "google_compute_subnetwork" "k8s_subnet" {
   name                     = "${var.gke_cluster_name}-subnet"
   ip_cidr_range            = var.primary_ip_cidr
-  network                  = google_compute_network.k8s_vpc.id
+  network                  = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
   private_ip_google_access = "true"
   region                   = var.region
 }
@@ -19,7 +15,7 @@ resource "google_compute_subnetwork" "proxy_only_subnet" {
   purpose       = "INTERNAL_HTTPS_LOAD_BALANCER"
   role          = "ACTIVE"
   ip_cidr_range = var.proxy_only_ip_cidr
-  network       = google_compute_network.k8s_vpc.id
+  network       = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
   region        = var.region
 }
 
@@ -30,7 +26,7 @@ resource "google_compute_subnetwork" "psc_subnet" {
   name                     = "${var.gke_cluster_name}-psc-subnet"
   purpose                  = "PRIVATE_SERVICE_CONNECT"
   ip_cidr_range            = var.psc_ip_cidr
-  network                  = google_compute_network.k8s_vpc.id
+  network                  = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
   private_ip_google_access = "true"
   region                   = var.region
 }
@@ -41,7 +37,7 @@ resource "google_compute_subnetwork" "psc_subnet" {
 #------------------------------
 resource "google_compute_firewall" "lb_health_check" {
   name        = "allow-health-check"
-  network     = google_compute_network.k8s_vpc.name
+  network     = "pin-devops-k8s-vpc"
   description = "Allow health checks from GCP LBs"
 
   direction = "INGRESS"
@@ -64,7 +60,7 @@ resource "google_compute_router" "k8s_vpc_router" {
   count   = var.enable_private_nodes ? 1 : 0
   name    = "${var.gke_cluster_name}-vpc-router"
   region  = var.region
-  network = google_compute_network.k8s_vpc.id
+  network = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
 }
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resource/compute_router_nat
