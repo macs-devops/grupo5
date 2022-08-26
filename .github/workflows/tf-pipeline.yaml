@@ -29,11 +29,6 @@ jobs:
         id: config_project
         run: gcloud config set project pin2022
 
-      - name: "Decrypt key service account"
-        id: decrypt_SA
-        run: gcloud secrets versions access latest --secret=test-terraform-key --project="pin2022"
-        working-directory: '.'
-
       - name: "Terraform Init"
         id: terraform_init
         uses: ops18/terraform-github-actions@master
@@ -43,7 +38,7 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_subcommand: init
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+          GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: "Terraform Validate"
         id: terraform_validate
         uses: ops18/terraform-github-actions@master
@@ -53,7 +48,7 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_subcommand: validate
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+          GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: "Terraform Plan"
         id: terraform_plan
         uses: ops18/terraform-github-actions@master
@@ -63,7 +58,7 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_subcommand: plan
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+          GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: "Terraform Apply"
         uses: ops18/terraform-github-actions@master
@@ -74,4 +69,4 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_subcommand: apply
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+          GCP_SA_KEY: ${{ secrets.GOOGLE_CREDENTIALS }}
