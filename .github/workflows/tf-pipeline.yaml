@@ -28,12 +28,12 @@ jobs:
 
       - name: set GCP project
         id: config_project
-        run: gcloud config set project xxxx
+        run: gcloud config set project pin2022
 
       - name: "Decrypt key service account"
         id: decrypt_SA
-        run: gcloud secrets versions access latest --secret=test-terraform-key --project="xxxx"
-        working-directory: "environments/${{ env.BRANCH_NAME }}"
+        run: gcloud secrets versions access latest --secret=test-terraform-key --project="pin2022"
+        working-directory: '.'
 
       - name: "Terraform Init"
         id: terraform_init
@@ -41,7 +41,7 @@ jobs:
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
-          tf_actions_working_dir: environments/${{ env.BRANCH_NAME }}
+          tf_actions_working_dir: '.'
           tf_actions_subcommand: init
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
@@ -51,7 +51,7 @@ jobs:
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
-          tf_actions_working_dir: environments/${{ env.BRANCH_NAME }}
+          tf_actions_working_dir: '.'
           tf_actions_subcommand: validate
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
@@ -61,7 +61,7 @@ jobs:
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
-          tf_actions_working_dir: environments/${{ env.BRANCH_NAME }}
+          tf_actions_working_dir: '.'
           tf_actions_subcommand: plan
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
@@ -72,7 +72,7 @@ jobs:
         with:
           tf_actions_version: ${{ env.TERRAFORM_VERSION }}
           tf_actions_comment: "false"
-          tf_actions_working_dir: environments/${{ env.BRANCH_NAME }}
+          tf_actions_working_dir: '.'
           tf_actions_subcommand: apply
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
