@@ -3,7 +3,7 @@ on:
   - push
   - pull_request
 env:
-  tf_version: '1.2.8'
+  TERRAFORM_VERSION: '1.2.8'
   tf_working_dir: '.'
 jobs:
   terraform:
