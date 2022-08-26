@@ -5,7 +5,7 @@ data "google_compute_network" "k8s_vpc" {
 
 data "google_compute_subnetwork" "iap_subnet" {
   name   = "pin-devops-iap-subnet"
-  region = "var.region"
+  region = var.region
 }
 
 resource "google_compute_firewall" "iap_tcp_forwarding" {
