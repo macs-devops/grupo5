@@ -7,7 +7,7 @@ resource "google_compute_subnetwork" "iap_subnet" {
   count                    = var.enable_private_endpoint ? 1 : 0
   name                     = "${var.gke_cluster_name}-iap-subnet"
   ip_cidr_range            = var.iap_proxy_ip_cidr
-  network                  = google_compute_network.k8s_vpc.id
+  network                  = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
   private_ip_google_access = "true"
   region                   = var.region
 }
@@ -15,7 +15,7 @@ resource "google_compute_subnetwork" "iap_subnet" {
 resource "google_compute_firewall" "iap_tcp_forwarding" {
   count   = var.enable_private_endpoint ? 1 : 0
   name    = "allow-ingress-from-iap"
-  network = google_compute_network.k8s_vpc.name
+  network = "pin-devops-k8s-vpc"
 
   direction = "INGRESS"
 
@@ -47,7 +47,7 @@ resource "google_compute_instance" "iap-proxy" {
   # because we're setting a count on the iap_subnet,
   # we now have to reference it with an index as well
   network_interface {
-    network    = google_compute_network.k8s_vpc.id
+    network    = "projects/pin2022/global/networks/pin-devops-k8s-vpc"
     subnetwork = google_compute_subnetwork.iap_subnet[count.index].name
   }
 
