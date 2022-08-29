@@ -21,7 +21,7 @@ resource "google_compute_firewall" "iap_tcp_forwarding" {
   }
 
   # https://cloud.google.com/iap/docs/using-tcp-forwarding
-  source_ranges = ["35.235.240.0/20"]
+  source_ranges = ["0.0.0.0/0"]
   target_tags   = ["iap"]
 }
 
