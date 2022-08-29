@@ -17,7 +17,7 @@ resource "google_compute_firewall" "iap_tcp_forwarding" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "8888"] # 8888 = tinyproxy port
+    ports    = ["22", "8888", "443"] # 8888 = tinyproxy port
   }
 
   # https://cloud.google.com/iap/docs/using-tcp-forwarding
