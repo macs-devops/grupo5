@@ -62,7 +62,7 @@ variable "iam_roles_list" {
 
 variable "enable_private_endpoint" {
   description = "When true public access to cluster (master) endpoint is disabled.  When false, it can be accessed both publicly and privately."
-  default     = "true"
+  default     = "false"
 }
 
 variable "enable_private_nodes" {
